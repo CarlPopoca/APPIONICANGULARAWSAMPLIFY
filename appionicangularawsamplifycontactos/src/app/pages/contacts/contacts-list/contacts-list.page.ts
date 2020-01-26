@@ -116,13 +116,7 @@ export class ContactsListPage implements OnInit {
     console.log(this.itemList);
     this.save(this.itemList);
   }
-
-  complete(i){
-
-    this.save(this.itemList);
- 
-  }
-
+  
   save(list){
      
    //Se ejecuta el método post para guardar la lista de contactos
