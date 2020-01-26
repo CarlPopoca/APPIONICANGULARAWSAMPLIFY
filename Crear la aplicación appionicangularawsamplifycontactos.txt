@@ -1,11 +1,11 @@
 
 La aplicación que se creara estara hecha con las siguientes tecnologías:
 
-Ionic: Framework js ui para diseñar las vistas
-Angular: Framework js para el backend
-Redux: Librería js para el manejo eficiente de los estados de la aplicación.
-AWS amplify y AWS movil hub: Para la creación y autenticación de usuarios y el almacenamiento de los contactos en la nube AWS.
-Cordova: Librerá js que hace que el aplicativo sea compatible en Android y IOS, en otras palabras solo nos tenemos que ocupar de hacer un solo
+	Ionic: Framework js ui para diseñar las vistas	
+	Angular: Framework js para el backend
+	Redux: Librería js para el manejo eficiente de los estados de la aplicación.
+	AWS amplify y AWS movil hub: Para la creación y autenticación de usuarios y el almacenamiento de los contactos en la nube AWS.
+	Cordova: Librerá js que hace que el aplicativo sea compatible en Android y IOS, en otras palabras solo nos tenemos que ocupar de hacer un solo
 	código y Cordova nos ayuda a que funcione en estas tecnologías.
 
 Recordar que Android esta hecho en Java y IOS en C.
@@ -44,7 +44,7 @@ Vaya a la raiz de la aplicación y ejecute el siguiente comando para agregar Cor
 
 	npm install -d cordova
 
-	Nota: O puede ejecutar el comando ionic integrations enable cordova.
+	Nota:También puede agregar Cordova ejecutando ionic integrations enable cordova
 
 Revisar la versión instalada de Cordova:
 
@@ -137,7 +137,7 @@ En un cmd vaya a la raiz de la app y ejecute el siguiente comando para instalar 
 
 Ejecute el siguiente comando para realizar las configuraciones principales Amplify:
 	
-		amplify configure
+	amplify configure
 
 Luego realice los siguientes pasos:
 
@@ -159,11 +159,11 @@ Ejecute los siguientes comandos para instalar AWS Amplify para el proyecto:
 
 Agregue el siguiente código dentro de las etiquetas HEAD del archivo src/index.html:
 
-<script>
-    if (global === undefined) {
-        var global = window;
-    }
-</script>
+	<script>
+	   if (global === undefined) {
+              var global = window;
+    	   }
+	</script>
 
 Ejecute los siguientes comandos en la raiz de la app para agregar AWS Amplify a la app:
 
