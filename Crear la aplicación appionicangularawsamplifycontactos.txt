@@ -1,0 +1,546 @@
+
+La aplicación que se creara estara hecha con las siguientes tecnologías:
+
+Ionic: Framework js ui para diseñar las vistas
+Angular: Framework js para el backend
+Redux: Librería js para el manejo eficiente de los estados de la aplicación.
+AWS amplify y AWS movil hub: Para la creación y autenticación de usuarios y el almacenamiento de los contactos en la nube AWS.
+Cordova: Librerá js que hace que el aplicativo sea compatible en Android y IOS, en otras palabras solo nos tenemos que ocupar de hacer un solo
+	código y Cordova nos ayuda a que funcione en estas tecnologías.
+
+Recordar que Android esta hecho en Java y IOS en C.
+
+Instalación de Ionic.
+
+Abra un cmd y ejecute el siguiente comando para la instalación de Ionic de manera global:
+
+	npm install -g ionic
+
+Revisar la versión instalada de ionic:
+
+	ionic -v
+
+Instalación de Cordova.
+
+Abra un cmd y ejecute el siguiente comando para la instalación global de Cordova.
+
+	npm install -g cordova
+
+	Nota: Permitira ocupar comandos de cordoba de manera en cualquier directorio.
+
+Creación de la aplicación.
+
+Cree la carpeta APPIONICANGULARAWSAMPLIFYCONTACTOS, luego en un cmd vaya a esta carpeta y ejecute el siguiente comando para
+crear un proyecto vacio.
+
+	ionic start appionicangularawsamplifycontactos --type angular blank
+
+	Nota: appionicangularawsamplifycontactos es el nombre del proyecto y con --type se especifica el framework js con el que trabajara,
+	al momento se ofrecen angular y react
+
+Agregar Cordova a la aplicación.
+
+Vaya a la raiz de la aplicación y ejecute el siguiente comando para agregar Cordova:
+
+	npm install -d cordova
+
+	Nota: O puede ejecutar el comando ionic integrations enable cordova.
+
+Revisar la versión instalada de Cordova:
+
+	Cordova -v
+
+Configuración de las plataformas.
+
+Vaya a la raiz de la aplicación y ejecute los siguientes comandos:
+
+	ionic cordova platform add ios
+
+	ionic cordova platform add android
+
+Instalación de librerias.
+
+Abra un cmd y vaya a la raiz de la aplicación para ejecutar el siguiente comando:
+
+	npm install  @angular/router --save
+
+Enseguida ejecute el siguiente comando, le permitira ejecutar la aplicación de forma nativa.
+
+	npm install -g native-run
+
+***************************************************************************
+Para actualizar las librerias de la aplicación a la versión más reciente puede ejecutar el siguiente comando de angular:
+
+	ng update
+
+**************************************************************************
+
+Revisar todas las librerias de ionic instaladas:
+
+	ionic info
+
+Ejecutar la aplicación.
+
+En un cmd vaya a la raiz de la aplicación y ejecute el siguiente comando:
+
+	ionic serve --lab
+
+	Nota: La url http://localhost:8100/ es la del navegador y la url http://localhost:8200/ es la movil, quitando --lab se despliega solo
+	en el Navegador
+
+Instalar la aplicación en un celular conectado a la laptop.
+
+****************************************************************************
+Debe tener instalado el adb para poder sincronizar el celular y la laptop, se proporciona añadiendo Google USB Driver en Android Studio.
+
+Si no cuenta con estas herramientas ejecute los siguientes pasos
+
+Instalación de Android Studio.
+
+Vaya a la sección Android Studio downloads de la url https://developer.android.com/studio#Other para descargar el ejecutable de Android Studio.
+
+Dar doble clic sobre el ejecutable y de preferencía elija la opción personalizada para seleccionar Android Studio y Android Virtual Device.
+
+Instalación del SDK tools de Android.
+
+El SDK ya viene por defecto en Android Studio, pero puede descargar las herramientas basicas de línea de comandos.
+
+Vaya a la sección Command line tools only de la url https://developer.android.com/studio#Other para descargar el ejecutable de Android Studio.
+
+Configurar Android Studio e instalar Google USB Driver.
+
+Para poder instalar y desplegar aplicaciones en el celular desde un cmd ejecutando los comandos de adb, debe habilitar la opción Google USN Driver
+de la siguiente manera:
+
+	* Abrir Android Studio, luego dar clic en el menú Tool y en SDK Manager.
+	* Dar clic en la pestaña SDK Tools y seleccione en la lista la opción Google USB Driver
+
+Configuración de variables de entorno de adb.
+
+Abra la ventana Editar varibles de entorno del sistema, luego pulse en el botón Variables de entorno y en las variable Path del Sistema y 
+del usuario agregue la ruta donde se encuentra el adb instalado es parecida a C:\Users\suUsuario\AppData\Local\Android\Sdk\platform-tools,
+esto le permitira ejecutar los comando adb desde cualquier directorio. 
+
+Configurar celular android.
+
+Ir a Ajustes, luego a la pestaña General, despúes pulse la opción Acerca del telefono, enseguida pulse en Información del Software
+y por último pulse 7 veces en Número de compilación para que en la pantalla anterior se visualice las Opciones del 
+desarrollador y pueda habilitar la Depuración de USB.
+
+Conecte el celular a la Laptop con un cable USB, luego pulse en la opción dispositivo MIDI y después en Ok para permitir la depuración USB.
+
+Instalar AWS Amplify Cli y configurar AWS Amplify.
+
+En un cmd vaya a la raiz de la app y ejecute el siguiente comando para instalar el AWS Amplify Cli:
+
+	npm install -g @aws-amplify/cli --save
+
+Ejecute el siguiente comando para realizar las configuraciones principales Amplify:
+	
+		amplify configure
+
+Luego realice los siguientes pasos:
+
+	* Introduzca sus credenciales de AWS en el navegador que se abrio.
+	* Regrese a la consola y presione Enter, luego seleccione us-east-1 y presione Enter.
+	* Especifique un nombre de usuario IAM, en mi caso puse amplify-angionic.
+	* En el navegador que se abrio seleccione la opción Acceso a la consola de administración de AWS, luego pulse la 
+		opción Contraseña personalizada e introduzca una que recuerde.
+	* Pulse el botón siguiente en Establecer permisos.
+	* Pulse el botón siguiente en Añadir etiquetas
+	* Pulse el botón Crear un usuario en la sección de Detalles del usuario.
+	* En la consola pulse Enter, luego introduzca el KeyId y el Secret KeyId que se le proporciono en la creación del usuario.
+	* En nombre de perfil deje default y presione Enter.		
+
+Ejecute los siguientes comandos para instalar AWS Amplify para el proyecto:
+
+	npm install aws-amplify
+	npm install aws-amplify-angular
+
+Agregue el siguiente código dentro de las etiquetas HEAD del archivo src/index.html:
+
+<script>
+    if (global === undefined) {
+        var global = window;
+    }
+</script>
+
+Ejecute los siguientes comandos en la raiz de la app para agregar AWS Amplify a la app:
+
+	amplify init
+
+Especifique un nombre para la app, para este caso se puso appioniccontacts.
+
+Especifique un nombre para el ambiente, se puso envcontact
+
+Seleccione con la opción Visual Sudio Code y presione enter.
+
+Con las flechas elija la opción javascript y presione enter.
+	
+Con las flechas elija la opción ionic.
+
+Deje por defecto la opción src como directorio de recursos y presione enter.
+
+Deje por defecto la opción www como directorio de distribución y presione enter.
+
+Deje por defecto el comando npm.cmd run-script build
+
+Deje por defecto el comando ionic serve para iniciar la aplicación.
+
+Escriba la y para usar un AWS Profile, luego seleccione la opción default y presione enter.
+
+Al terminar se mostrara un texto como el siguiente:
+
+	- Initializing project in the cloud...
+
+	CREATE_IN_PROGRESS AuthRole                                   AWS::IAM::Role             Mon Jan 20 2020 18:55:13 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS DeploymentBucket                           AWS::S3::Bucket            Mon Jan 20 2020 18:55:13 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS UnauthRole                                 AWS::IAM::Role             Mon Jan 20 2020 18:55:13 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS AuthRole                                   AWS::IAM::Role             Mon Jan 20 2020 18:55:12 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS DeploymentBucket                           AWS::S3::Bucket            Mon Jan 20 2020 18:55:12 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UnauthRole                                 AWS::IAM::Role             Mon Jan 20 2020 18:55:12 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Mon Jan 20 2020 18:55:09 GMT-0600 (GMT-06:00) User Initiated
+	- Initializing project in the cloud...
+
+	CREATE_COMPLETE AuthRole   AWS::IAM::Role Mon Jan 20 2020 18:55:25 GMT-0600 (GMT-06:00)
+	CREATE_COMPLETE UnauthRole AWS::IAM::Role Mon Jan 20 2020 18:55:25 GMT-0600 (GMT-06:00)
+	\ Initializing project in the cloud...
+
+	CREATE_COMPLETE DeploymentBucket AWS::S3::Bucket Mon Jan 20 2020 18:55:34 GMT-0600 (GMT-06:00)
+	- Initializing project in the cloud...
+
+	CREATE_COMPLETE amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Mon Jan 20 2020 18:55:36 GMT-0600 (GMT-06:00)
+	√ Successfully created initial AWS cloud resources for deployments.
+	√ Initialized provider successfully.
+	Initialized your environment successfully.
+
+	Your project has been successfully initialized and connected to the cloud!
+
+	Some next steps:
+	"amplify status" will show you what you've added already and if it's locally configured or deployed
+	"amplify add <category>" will allow you to add features like user login or a backend API
+	"amplify push" will build all your local backend resources and provision it in the cloud
+	“amplify console” to open the Amplify Console and view your project status
+	"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+	Pro tip:
+	Try "amplify add api" to create a backend API and then "amplify publish" to deploy everything
+
+Ejecute el siguiente comando para recopilar datos de las acciones de los usuarios:
+
+	amplify add analytics
+
+Especifique el nombre del recurso pinpoint, en mi caso es appioniccontacts y presione enter.
+
+Escriba la letra y para permitir que los invitados y usuarios no autenticados envíen eventos de análisis.
+
+Ejecute el siguiente comando para confimar las transacciones.
+
+	amplify push
+
+Al terminar le mostrara una url  donde podra ver los elementos que ha configurado, en mi caso fue:
+
+	https://us-east-1.console.aws.amazon.com/pinpoint/home/?region=us-east-1#/apps/6d1204b8bcdc46c1939f630aba88b048/analytics/overview
+
+Abra el archivo src/main.ts y agregue las siguientes lineas:
+
+	import Amplify, { Analytics } from 'aws-amplify';
+	import aws_exports from './aws-exports';
+	
+	Amplify.configure(aws_exports);
+
+Agregar autenticación con Cognito.
+
+Amazón cognito es un servicio de autenticación basado en la nube que ayuda a administrar el acceso de los usuarios a las aplicaciones. 
+Amplify CLI y AWS Amplify lo ayudan aún más en la autenticación al crear y conectarse a estos recursos.
+
+Ejecute el siguiente comando para agregar la autenticación:
+
+	amplify add auth
+
+Realice los siguientes pasos:
+	
+	* Elija la opción Default configuration y pulse Enter.
+	* Elija Email and phone number para el ingreso de los usuarios.
+	* Elija No, I am done para configurar opciones avanzadas.
+	
+Ejecute amplify push para confirmar los cambios.	
+
+Habilitar auth UI.
+
+Acontinuación vamos a habilitar los componentes de autenticación de AWS Amplify disponibles para la app. Para hacerlo debemos importar 
+los módulos AmplifyService, AmplifyAngularMode, AmplifyIonicModule en el módulo de inicio app.module.ts.
+
+Para renderizar los elementos UI y se proporcione funcionalidad para para el registro del usuario, el inicio de sesión, la recuperación 
+de la contraseña y la autenticación multifactor vaya al archivo scr/app/home/home.page.html y agregue las siguientes líneas:
+
+	<ion-content padding>
+		<amplify-authenticator framework="ionic"></amplify-authenticator>
+	</ion-content>
+
+Habilitar estilos en el archivo global.
+
+Importe estilos predeterminados desde el módulo aws-amplify-angular para asegurarse de que su componente autenticador y otros componentes 
+de AWS Amplify UI tengan el estilo correcto, abra el archivo src/global.scss y agregue:
+
+	@import "~@aws-amplify/ui/src/Theme.css";
+	@import "~@aws-amplify/ui/src/Angular.css";
+	@import "~@aws-amplify/ui/dist/style.css";';
+
+Habilitar componentes en el archivo home.page.ts.
+
+Vamos a crear una suscripción a la escucha de estado de autenticación de AWS Amplify, que utiliza Ionic Events para notificar al resto de la aplicación 
+cuando el usuario inicia o cierra sesión.
+
+Abra el archivo src/app/home.page.ts y realice los siguientes cambios:
+
+	* Importe la librería aws-amplify-angular:
+
+		import { AmplifyService }  from 'aws-amplify-angular';
+
+	* Implemente AfterContentInit en la clase, ejemplo:
+
+		export class HomePage implements AfterContentInit{
+
+	* Agregue la siguiente variable  amplifyService: AmplifyService y modifique el constructor, debe quedar de la siguiente manera:
+
+	constructor(public events: Events, public guard: AuthGuardService, public amplify: AmplifyService) {
+	    this.authState = {loggedIn: false};
+	    this.authService = guard;
+	    this.amplifyService = amplify;
+
+	    this.amplifyService.authStateChange$
+	    .subscribe(authState => {
+	      this.authState.loggedIn = authState.state === 'signedIn';
+	      this.events.publish('data:AuthState', this.authState)
+	    });
+	  }
+
+Habilitar el backend de la nube.
+
+Habilitaremos las caracteristicas de la base de datos NoSQL y configuraremos las tablas.
+
+En la raiz de la app, ejecute el siguiente comando y seleccione el tipo de servicio Base de datos NoSQL:
+		
+	amplify add storage
+
+Especifique un nombre para indentificarlo, en mi caso puse DynamoContacts.
+
+Luego esecifique un nombre de tabla, en mi caso puse Contacts.
+
+Agregue las columnas y seleccione el tipo, puse las siguientes:
+	
+	* userId string
+	* items list
+
+Especifique la clave primaria (partition key), seleccione userId
+
+Escriba n para cancelar la opción global secondary indexes.
+Escriba n para cancelar la opción add Lambda Trigger. 
+
+Al terminar la configuración le mostrara un mensaje como el siguiente:
+
+	Successfully added resource dynamoContacts locally
+
+	Some next steps:
+	"amplify push" builds all of your local backend resources and provisions them in the cloud
+	"amplify publish" builds all of your local backend and front-end resources (if you added hosting category) and provisions them in the cloud
+
+Ejecute el comando amplify push para los elementos de AWS que ha configurardo en la app.
+
+Elija yes para continuar a la pregunta si desea continuar.
+		
+Si desea configurar un modelo de base de datos más complejo consulte la url https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html.
+
+Habilitar la cloud API.
+
+Para acceder a la base de datos NoSQL, debera crear una API que pueda ser llamada desde su app para poder realizar las operaciones del CRUD.
+
+Vaya a la raiz de la app y ejecute el siguiente comando para crear el CRUD API.
+
+	amplify add api
+
+Elija REST y presione enter.
+
+Escriba el nombre de la Api, se recomienda poner nombres descriptivos, en mi caso puse ApiContacts y presione enter.
+
+Escriba el path de la API y luego pulse enter, en mi caso puse /Contacts.
+
+Presione enter para la opción Create a new Lambda function.
+
+Proporcione un friendly name que se usara como indetificar a la función Lamda, en mi caso puse ContactsLambda.
+
+Especifique el nombre de la función lambda y luego presione enter, yo puse ContactsFunction.
+
+Seleccione la opción función CRUD para Tabla de Amazon DynamoDB (Integración con Amazon API Gateway y Amazon DynamoDB) y pulse enter.
+
+Seleccione la opción Usar una tabla configurada de DynamoDB en el actual proyecto de Amplify y presione enter.
+
+Seleccione la tabla y presione enter, en mi caso eleji DynamoContacts.
+
+Escriba n para cancelar el acceder a otro recurso creado en su proyecto desde su función lambda y presione enter.
+
+Escriba n para cancelar el editar la función lambda ahora y pulse enter.
+
+	Nota: Se visualizara el mensaje Succesfully added the Lambda function locally.
+
+Escriba n para no restringir el acceso a la API.
+
+Escriba n para no agregar otro Path.
+
+Ejecute el siguiente comando para confirmar los cambios:
+
+	amplify push
+
+Al terminar se visualizara el siguiente resultado:
+
+√ Successfully pulled backend environment ionicang from the cloud.
+
+Current Environment: envcontact
+
+	Current Environment: envcontact
+
+	| Category  | Resource name            | Operation | Provider plugin   |
+	| --------- | ------------------------ | --------- | ----------------- |
+	| Auth      | appioniccontactsd2ebaefa | Create    | awscloudformation |
+	| Analytics | appioniccontacts         | No Change | awscloudformation |
+	| Storage   | DynamoContacts           | No Change | awscloudformation |
+	| Function  | ContactsLambda           | No Change | awscloudformation |
+	| Api       | ApiContacts              | No Change | awscloudformation |
+
+Escriba la y para continuar, al terminar se visualizara el siguiente resultado:
+
+	UPDATE_COMPLETE    analyticsappioniccontacts                  AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:24 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS authappioniccontactsd2ebaefa               AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00) Resource creation Initiated
+	UPDATE_COMPLETE    storageDynamoContacts                      AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionRole             AWS::IAM::Role             Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00) Resource creation Initiated
+	UPDATE_IN_PROGRESS storageDynamoContacts                      AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionRole             AWS::IAM::Role             Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
+	UPDATE_IN_PROGRESS analyticsappioniccontacts                  AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS authappioniccontactsd2ebaefa               AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
+	UPDATE_IN_PROGRESS amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:18 GMT-0600 (GMT-06:00) User Initiated
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS amplify-appioniccontacts-envcontact-185506-authappioniccontactsd2ebaefa-1FJUZNIC1SUZO AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00) User Initiated
+	| Updating resources in the cloud. This may take a few minutes...
+
+	UPDATE_COMPLETE    functionContactsLambda AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:26 GMT-0600 (GMT-06:00)
+	UPDATE_IN_PROGRESS functionContactsLambda AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:26 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS SNSRole AWS::IAM::Role Tue Jan 21 2020 21:37:29 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	UPDATE_COMPLETE    apiApiContacts AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:30 GMT-0600 (GMT-06:00)
+	UPDATE_IN_PROGRESS apiApiContacts AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:29 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS SNSRole AWS::IAM::Role Tue Jan 21 2020 21:37:30 GMT-0600 (GMT-06:00) Resource creation Initiated
+	- Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE UpdateRolesWithIDPFunctionRole AWS::IAM::Role Tue Jan 21 2020 21:37:37 GMT-0600 (GMT-06:00)
+	- Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE SNSRole AWS::IAM::Role Tue Jan 21 2020 21:37:44 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPool AWS::Cognito::UserPool Tue Jan 21 2020 21:37:48 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    UserPool AWS::Cognito::UserPool Tue Jan 21 2020 21:37:50 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UserPool AWS::Cognito::UserPool Tue Jan 21 2020 21:37:50 GMT-0600 (GMT-06:00) Resource creation Initiated
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPoolClientWeb AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS UserPoolClient    AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:54 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UserPoolClientWeb AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:54 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    UserPoolClient    AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UserPoolClient    AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_COMPLETE    UserPoolClientWeb AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPoolClientRole AWS::IAM::Role Tue Jan 21 2020 21:38:00 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS UserPoolClientRole AWS::IAM::Role Tue Jan 21 2020 21:38:00 GMT-0600 (GMT-06:00)
+	/ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE UserPoolClientRole AWS::IAM::Role Tue Jan 21 2020 21:38:12 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPoolClientLambda AWS::Lambda::Function Tue Jan 21 2020 21:38:16 GMT-0600 (GMT-06:00)
+	- Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    UserPoolClientLambda AWS::Lambda::Function Tue Jan 21 2020 21:38:18 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UserPoolClientLambda AWS::Lambda::Function Tue Jan 21 2020 21:38:17 GMT-0600 (GMT-06:00) Resource creation Initiated
+	- Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPoolClientLambdaPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:23 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS UserPoolClientLambdaPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:22 GMT-0600 (GMT-06:00)
+	/ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE UserPoolClientLambdaPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:34 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPoolClientLogPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:38 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS UserPoolClientLogPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:37 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE UserPoolClientLogPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:50 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UserPoolClientInputs Custom::LambdaCallout Tue Jan 21 2020 21:38:53 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    UserPoolClientInputs Custom::LambdaCallout Tue Jan 21 2020 21:38:57 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UserPoolClientInputs Custom::LambdaCallout Tue Jan 21 2020 21:38:57 GMT-0600 (GMT-06:00) Resource creation Initiated
+	- Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS IdentityPool AWS::Cognito::IdentityPool Tue Jan 21 2020 21:39:00 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    IdentityPool AWS::Cognito::IdentityPool Tue Jan 21 2020 21:39:04 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS IdentityPool AWS::Cognito::IdentityPool Tue Jan 21 2020 21:39:03 GMT-0600 (GMT-06:00) Resource creation Initiated
+	- Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    IdentityPoolRoleMap AWS::Cognito::IdentityPoolRoleAttachment Tue Jan 21 2020 21:39:10 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS IdentityPoolRoleMap AWS::Cognito::IdentityPoolRoleAttachment Tue Jan 21 2020 21:39:10 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS IdentityPoolRoleMap AWS::Cognito::IdentityPoolRoleAttachment Tue Jan 21 2020 21:39:08 GMT-0600 (GMT-06:00)
+	/ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE amplify-appioniccontacts-envcontact-185506-authappioniccontactsd2ebaefa-1FJUZNIC1SUZO AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:13 GMT-0600 (GMT-06:00)
+	\ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE authappioniccontactsd2ebaefa AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:18 GMT-0600 (GMT-06:00)
+	/ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionOutputs Custom::LambdaCallout Tue Jan 21 2020 21:39:24 GMT-0600 (GMT-06:00)
+	CREATE_COMPLETE    UpdateRolesWithIDPFunction        AWS::Lambda::Function Tue Jan 21 2020 21:39:21 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UpdateRolesWithIDPFunction        AWS::Lambda::Function Tue Jan 21 2020 21:39:21 GMT-0600 (GMT-06:00) Resource creation Initiated
+	CREATE_IN_PROGRESS UpdateRolesWithIDPFunction        AWS::Lambda::Function Tue Jan 21 2020 21:39:20 GMT-0600 (GMT-06:00)
+	/ Updating resources in the cloud. This may take a few minutes...
+
+	CREATE_COMPLETE    UpdateRolesWithIDPFunctionOutputs Custom::LambdaCallout Tue Jan 21 2020 21:39:27 GMT-0600 (GMT-06:00)
+	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionOutputs Custom::LambdaCallout Tue Jan 21 2020 21:39:27 GMT-0600 (GMT-06:00) Resource creation Initiated
+	| Updating resources in the cloud. This may take a few minutes...
+
+	UPDATE_COMPLETE_CLEANUP_IN_PROGRESS amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:30 GMT-0600 (GMT-06:00)
+	| Updating resources in the cloud. This may take a few minutes...
+
+	UPDATE_COMPLETE amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:34 GMT-0600 (GMT-06:00)
+	UPDATE_COMPLETE storageDynamoContacts                      AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:33 GMT-0600 (GMT-06:00)
+	UPDATE_COMPLETE functionContactsLambda                     AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:32 GMT-0600 (GMT-06:00)
+	UPDATE_COMPLETE analyticsappioniccontacts                  AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:31 GMT-0600 (GMT-06:00)
+	UPDATE_COMPLETE apiApiContacts                             AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:31 GMT-0600 (GMT-06:00)
+	√ All resources are updated in the cloud
+	 
+
+Creación de page.
+
+Vaya a al ruta donde desea crear los archivos de la página y ejecute el siguiente comando:
+
+	ionic g page namepage
+	Nota: namepage es el nombre de la página
+
+
+

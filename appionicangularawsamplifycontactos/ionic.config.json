@@ -1,0 +1,7 @@
+{
+  "name": "appionicangularreduxawsamplifycontactos",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
