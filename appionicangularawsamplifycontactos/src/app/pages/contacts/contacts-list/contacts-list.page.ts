@@ -27,9 +27,7 @@ export class ContactsListPage implements OnInit {
     events: Events
 
   ) {
-  
     this.amplifyService = amplify;
-    
     //Se obtienen los datos del AuthState para ver si hay un usuario logeado para obtener su infrmación
     // y luego mostrar la lista de contactos
     events.subscribe('data:AuthState', async (data) => {
@@ -37,12 +35,8 @@ export class ContactsListPage implements OnInit {
       if (data.user){
         this.user = await this.amplifyService.auth().currentUserInfo();
         this.getItems();
-      } else {
-        this.itemList = [];
-        this.user = null;
       }
     })
- 
   }
 
   async ngOnInit(){
