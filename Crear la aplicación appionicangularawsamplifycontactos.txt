@@ -537,7 +537,7 @@ Escriba la y para continuar, al terminar se visualizara el siguiente resultado:
 
 Creación de page.
 
-Vaya a al ruta donde desea crear los archivos de la página y ejecute el siguiente comando:
+Vaya a la ruta donde desea crear los archivos de la página y ejecute el siguiente comando:
 
 	ionic g page namepage
 	Nota: namepage es el nombre de la página
