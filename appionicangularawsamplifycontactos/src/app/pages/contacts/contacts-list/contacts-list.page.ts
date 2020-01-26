@@ -7,7 +7,7 @@ import { ContactItem, ContactList } from '../../../shared/model/contact';
 @Component({
   selector: 'app-contacts-list',
   templateUrl: './contacts-list.page.html',
-  styleUrls: ['./contacts-list.page.scss'],
+  styleUrls: [],
 })
 
 export class ContactsListPage implements OnInit {
