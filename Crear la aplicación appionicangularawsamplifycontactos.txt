@@ -159,11 +159,11 @@ Ejecute los siguientes comandos para instalar AWS Amplify para el proyecto:
 
 Agregue el siguiente código dentro de las etiquetas HEAD del archivo src/index.html:
 
-	<script>
-	   if (global === undefined) {
-              var global = window;
-    	   }
-	</script>
+<script>
+    if (global === undefined) {
+        var global = window;
+    }
+</script>
 
 Ejecute los siguientes comandos en la raiz de la app para agregar AWS Amplify a la app:
 
@@ -190,29 +190,6 @@ Deje por defecto el comando ionic serve para iniciar la aplicación.
 Escriba la y para usar un AWS Profile, luego seleccione la opción default y presione enter.
 
 Al terminar se mostrara un texto como el siguiente:
-
-	- Initializing project in the cloud...
-
-	CREATE_IN_PROGRESS AuthRole                                   AWS::IAM::Role             Mon Jan 20 2020 18:55:13 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS DeploymentBucket                           AWS::S3::Bucket            Mon Jan 20 2020 18:55:13 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS UnauthRole                                 AWS::IAM::Role             Mon Jan 20 2020 18:55:13 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS AuthRole                                   AWS::IAM::Role             Mon Jan 20 2020 18:55:12 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS DeploymentBucket                           AWS::S3::Bucket            Mon Jan 20 2020 18:55:12 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UnauthRole                                 AWS::IAM::Role             Mon Jan 20 2020 18:55:12 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Mon Jan 20 2020 18:55:09 GMT-0600 (GMT-06:00) User Initiated
-	- Initializing project in the cloud...
-
-	CREATE_COMPLETE AuthRole   AWS::IAM::Role Mon Jan 20 2020 18:55:25 GMT-0600 (GMT-06:00)
-	CREATE_COMPLETE UnauthRole AWS::IAM::Role Mon Jan 20 2020 18:55:25 GMT-0600 (GMT-06:00)
-	\ Initializing project in the cloud...
-
-	CREATE_COMPLETE DeploymentBucket AWS::S3::Bucket Mon Jan 20 2020 18:55:34 GMT-0600 (GMT-06:00)
-	- Initializing project in the cloud...
-
-	CREATE_COMPLETE amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Mon Jan 20 2020 18:55:36 GMT-0600 (GMT-06:00)
-	√ Successfully created initial AWS cloud resources for deployments.
-	√ Initialized provider successfully.
-	Initialized your environment successfully.
 
 	Your project has been successfully initialized and connected to the cloud!
 
@@ -326,7 +303,7 @@ En la raiz de la app, ejecute el siguiente comando y seleccione el tipo de servi
 
 Especifique un nombre para indentificarlo, en mi caso puse DynamoContacts.
 
-Luego esecifique un nombre de tabla, en mi caso puse Contacts.
+Luego especifique un nombre de tabla, en mi caso puse Contacts.
 
 Agregue las columnas y seleccione el tipo, puse las siguientes:
 	
@@ -349,10 +326,30 @@ Al terminar la configuración le mostrara un mensaje como el siguiente:
 Ejecute el comando amplify push para los elementos de AWS que ha configurardo en la app.
 
 Elija yes para continuar a la pregunta si desea continuar.
+
+Repita los siguientes pasos para crear la tabla de Gender:
+
+	Amplify add storage
+	
+Especifique un nombre para indentificarlo, en mi caso puse DynamoGender.
+
+Luego especifique un nombre de tabla, en mi caso puse Gender
+
+Agregue las columnas y seleccione el tipo, puse las siguientes:
+	
+	* id string
+	* name string
+
+Especifique la clave primaria (partition key), seleccione id
+
+Escriba n para cancelar la opción global secondary indexes.
+Escriba n para cancelar la opción add Lambda Trigger. 
+
+Ejecute el comando amplify push para confirmar la creación de esta tabla.
 		
 Si desea configurar un modelo de base de datos más complejo consulte la url https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html.
 
-Habilitar la cloud API.
+Habilitar la cloud API Contacts.
 
 Para acceder a la base de datos NoSQL, debera crear una API que pueda ser llamada desde su app para poder realizar las operaciones del CRUD.
 
@@ -410,134 +407,75 @@ Current Environment: envcontact
 
 Escriba la y para continuar, al terminar se visualizara el siguiente resultado:
 
-	UPDATE_COMPLETE    analyticsappioniccontacts                  AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:24 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS authappioniccontactsd2ebaefa               AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00) Resource creation Initiated
-	UPDATE_COMPLETE    storageDynamoContacts                      AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionRole             AWS::IAM::Role             Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00) Resource creation Initiated
-	UPDATE_IN_PROGRESS storageDynamoContacts                      AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionRole             AWS::IAM::Role             Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
-	UPDATE_IN_PROGRESS analyticsappioniccontacts                  AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS authappioniccontactsd2ebaefa               AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00)
-	UPDATE_IN_PROGRESS amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:18 GMT-0600 (GMT-06:00) User Initiated
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS amplify-appioniccontacts-envcontact-185506-authappioniccontactsd2ebaefa-1FJUZNIC1SUZO AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:23 GMT-0600 (GMT-06:00) User Initiated
-	| Updating resources in the cloud. This may take a few minutes...
-
-	UPDATE_COMPLETE    functionContactsLambda AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:26 GMT-0600 (GMT-06:00)
-	UPDATE_IN_PROGRESS functionContactsLambda AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:26 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS SNSRole AWS::IAM::Role Tue Jan 21 2020 21:37:29 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	UPDATE_COMPLETE    apiApiContacts AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:30 GMT-0600 (GMT-06:00)
-	UPDATE_IN_PROGRESS apiApiContacts AWS::CloudFormation::Stack Tue Jan 21 2020 21:37:29 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS SNSRole AWS::IAM::Role Tue Jan 21 2020 21:37:30 GMT-0600 (GMT-06:00) Resource creation Initiated
-	- Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE UpdateRolesWithIDPFunctionRole AWS::IAM::Role Tue Jan 21 2020 21:37:37 GMT-0600 (GMT-06:00)
-	- Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE SNSRole AWS::IAM::Role Tue Jan 21 2020 21:37:44 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPool AWS::Cognito::UserPool Tue Jan 21 2020 21:37:48 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    UserPool AWS::Cognito::UserPool Tue Jan 21 2020 21:37:50 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UserPool AWS::Cognito::UserPool Tue Jan 21 2020 21:37:50 GMT-0600 (GMT-06:00) Resource creation Initiated
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPoolClientWeb AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS UserPoolClient    AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:54 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UserPoolClientWeb AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:54 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    UserPoolClient    AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UserPoolClient    AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_COMPLETE    UserPoolClientWeb AWS::Cognito::UserPoolClient Tue Jan 21 2020 21:37:56 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPoolClientRole AWS::IAM::Role Tue Jan 21 2020 21:38:00 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS UserPoolClientRole AWS::IAM::Role Tue Jan 21 2020 21:38:00 GMT-0600 (GMT-06:00)
-	/ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE UserPoolClientRole AWS::IAM::Role Tue Jan 21 2020 21:38:12 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPoolClientLambda AWS::Lambda::Function Tue Jan 21 2020 21:38:16 GMT-0600 (GMT-06:00)
-	- Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    UserPoolClientLambda AWS::Lambda::Function Tue Jan 21 2020 21:38:18 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UserPoolClientLambda AWS::Lambda::Function Tue Jan 21 2020 21:38:17 GMT-0600 (GMT-06:00) Resource creation Initiated
-	- Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPoolClientLambdaPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:23 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS UserPoolClientLambdaPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:22 GMT-0600 (GMT-06:00)
-	/ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE UserPoolClientLambdaPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:34 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPoolClientLogPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:38 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS UserPoolClientLogPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:37 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE UserPoolClientLogPolicy AWS::IAM::Policy Tue Jan 21 2020 21:38:50 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UserPoolClientInputs Custom::LambdaCallout Tue Jan 21 2020 21:38:53 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    UserPoolClientInputs Custom::LambdaCallout Tue Jan 21 2020 21:38:57 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UserPoolClientInputs Custom::LambdaCallout Tue Jan 21 2020 21:38:57 GMT-0600 (GMT-06:00) Resource creation Initiated
-	- Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS IdentityPool AWS::Cognito::IdentityPool Tue Jan 21 2020 21:39:00 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    IdentityPool AWS::Cognito::IdentityPool Tue Jan 21 2020 21:39:04 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS IdentityPool AWS::Cognito::IdentityPool Tue Jan 21 2020 21:39:03 GMT-0600 (GMT-06:00) Resource creation Initiated
-	- Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    IdentityPoolRoleMap AWS::Cognito::IdentityPoolRoleAttachment Tue Jan 21 2020 21:39:10 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS IdentityPoolRoleMap AWS::Cognito::IdentityPoolRoleAttachment Tue Jan 21 2020 21:39:10 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS IdentityPoolRoleMap AWS::Cognito::IdentityPoolRoleAttachment Tue Jan 21 2020 21:39:08 GMT-0600 (GMT-06:00)
-	/ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE amplify-appioniccontacts-envcontact-185506-authappioniccontactsd2ebaefa-1FJUZNIC1SUZO AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:13 GMT-0600 (GMT-06:00)
-	\ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE authappioniccontactsd2ebaefa AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:18 GMT-0600 (GMT-06:00)
-	/ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionOutputs Custom::LambdaCallout Tue Jan 21 2020 21:39:24 GMT-0600 (GMT-06:00)
-	CREATE_COMPLETE    UpdateRolesWithIDPFunction        AWS::Lambda::Function Tue Jan 21 2020 21:39:21 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UpdateRolesWithIDPFunction        AWS::Lambda::Function Tue Jan 21 2020 21:39:21 GMT-0600 (GMT-06:00) Resource creation Initiated
-	CREATE_IN_PROGRESS UpdateRolesWithIDPFunction        AWS::Lambda::Function Tue Jan 21 2020 21:39:20 GMT-0600 (GMT-06:00)
-	/ Updating resources in the cloud. This may take a few minutes...
-
-	CREATE_COMPLETE    UpdateRolesWithIDPFunctionOutputs Custom::LambdaCallout Tue Jan 21 2020 21:39:27 GMT-0600 (GMT-06:00)
-	CREATE_IN_PROGRESS UpdateRolesWithIDPFunctionOutputs Custom::LambdaCallout Tue Jan 21 2020 21:39:27 GMT-0600 (GMT-06:00) Resource creation Initiated
-	| Updating resources in the cloud. This may take a few minutes...
-
-	UPDATE_COMPLETE_CLEANUP_IN_PROGRESS amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:30 GMT-0600 (GMT-06:00)
-	| Updating resources in the cloud. This may take a few minutes...
-
 	UPDATE_COMPLETE amplify-appioniccontacts-envcontact-185506 AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:34 GMT-0600 (GMT-06:00)
 	UPDATE_COMPLETE storageDynamoContacts                      AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:33 GMT-0600 (GMT-06:00)
 	UPDATE_COMPLETE functionContactsLambda                     AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:32 GMT-0600 (GMT-06:00)
 	UPDATE_COMPLETE analyticsappioniccontacts                  AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:31 GMT-0600 (GMT-06:00)
 	UPDATE_COMPLETE apiApiContacts                             AWS::CloudFormation::Stack Tue Jan 21 2020 21:39:31 GMT-0600 (GMT-06:00)
 	√ All resources are updated in the cloud
-	 
+
+Habilitar la cloud API Gender.
+
+Para acceder a la base de datos NoSQL, debera crear una API que pueda ser llamada desde su app para poder realizar las operaciones del CRUD.
+
+Vaya a la raiz de la app y ejecute el siguiente comando para crear el CRUD API.
+
+	amplify add api
+
+Elija REST y presione enter.
+
+Escriba el nombre de la Api, se recomienda poner nombres descriptivos, en mi caso puse ApiGender y presione enter.
+
+Escriba el path de la API y luego pulse enter, en mi caso puse /Gender.
+
+Presione enter para la opción Create a new Lambda function.
+
+Proporcione un friendly name que se usara como indetificar a la función Lamda, en mi caso puse GenderLambda.
+
+Especifique el nombre de la función lambda y luego presione enter, yo puse GenderFunction.
+
+Seleccione la opción función CRUD para Tabla de Amazon DynamoDB (Integración con Amazon API Gateway y Amazon DynamoDB) y pulse enter.
+
+Seleccione la opción Usar una tabla configurada de DynamoDB en el actual proyecto de Amplify y presione enter.
+
+Seleccione la tabla y presione enter, en mi caso eleji DynamoGender.
+
+Escriba n para cancelar el acceder a otro recurso creado en su proyecto desde su función lambda y presione enter.
+
+Escriba y para  editar la función lambda ahora y pulse enter, se le proporcionara la ruta para que lo abra, luego modifique el método
+get de la siguiente manera para que pueda obtener todos los registros de la tabla, de lo contrario solo podra obtener los registros de la tabla
+por el partition key que es equivalente al primary key:
+
+	app.get(path, function (req, res) {
+	  var params = {
+	    TableName: tableName,
+	    Select: 'ALL_ATTRIBUTES',
+	  };
+	  dynamodb.scan(params, (err, data) => {
+	    if (err) {
+	      res.json({ error: 'Could not load items: ' + err.message });
+	    }
+	    res.json({
+	      data: data.Items.map(item => {
+	        return item;
+	      })
+	    });
+	  });
+	});
+
+Después de que guarde los cambios presione la tecla enter en el cmd.
+
+Escriba n para no restringir el acceso a la API.
+
+Escriba n para no agregar otro Path.
+
+Ejecute el siguiente comando para confirmar los cambios:
+
+	amplify push	 
 
 Creación de page.
 
-Vaya a la ruta donde desea crear los archivos de la página y ejecute el siguiente comando:
+Vaya a al ruta donde desea crear los archivos de la página y ejecute el siguiente comando:
 
 	ionic g page namepage
 	Nota: namepage es el nombre de la página
