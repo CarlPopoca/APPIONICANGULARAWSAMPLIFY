@@ -1,19 +1,19 @@
 {
     "envcontact": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-appioniccontacts-envcontact-185506-authRole",
-            "UnauthRoleArn": "arn:aws:iam::062872692160:role/amplify-appioniccontacts-envcontact-185506-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::062872692160:role/amplify-appioniccontacts-envcontact-185506-authRole",
+            "AuthRoleName": "amplify-appioniccontacts-envcontact-220459-authRole",
+            "UnauthRoleArn": "arn:aws:iam::062872692160:role/amplify-appioniccontacts-envcontact-220459-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::062872692160:role/amplify-appioniccontacts-envcontact-220459-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-appioniccontacts-envcontact-185506-deployment",
-            "UnauthRoleName": "amplify-appioniccontacts-envcontact-185506-unauthRole",
-            "StackName": "amplify-appioniccontacts-envcontact-185506",
-            "StackId": "arn:aws:cloudformation:us-east-1:062872692160:stack/amplify-appioniccontacts-envcontact-185506/abd8e030-3be8-11ea-9f86-12c9c271ca70",
-            "AmplifyAppId": "d2ucw4usttd0sp"
+            "DeploymentBucketName": "amplify-appioniccontacts-envcontact-220459-deployment",
+            "UnauthRoleName": "amplify-appioniccontacts-envcontact-220459-unauthRole",
+            "StackName": "amplify-appioniccontacts-envcontact-220459",
+            "StackId": "arn:aws:cloudformation:us-east-1:062872692160:stack/amplify-appioniccontacts-envcontact-220459/20b44fb0-495f-11ea-8522-0a200f00c284",
+            "AmplifyAppId": "d38fla6tg0gbx4"
         },
         "categories": {
             "auth": {
-                "appioniccontactsd2ebaefa": {}
+                "appioniccontacts1077b73f": {}
             }
         }
     }

@@ -1,10 +1,10 @@
 {
     "appName": "appioniccontacts",
-    "roleName": "pinpointLambdaRole52596e55",
-    "cloudWatchPolicyName": "cloudWatchPolicy52596e55",
-    "pinpointPolicyName": "pinpointPolicy52596e55",
-    "authPolicyName": "pinpoint_amplify_52596e55",
-    "unauthPolicyName": "pinpoint_amplify_52596e55",
+    "roleName": "pinpointLambdaRolef0687854",
+    "cloudWatchPolicyName": "cloudWatchPolicyf0687854",
+    "pinpointPolicyName": "pinpointPolicyf0687854",
+    "authPolicyName": "pinpoint_amplify_f0687854",
+    "unauthPolicyName": "pinpoint_amplify_f0687854",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },

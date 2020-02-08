@@ -12,8 +12,6 @@ import { ContactsItemModalPage } from '../contacts-item-modal/contacts-item-moda
     FormsModule
   ],
   declarations: [
-    ContactsListPage,
-    ContactsItemModalPage
   ],
   entryComponents: [
     ContactsItemModalPage

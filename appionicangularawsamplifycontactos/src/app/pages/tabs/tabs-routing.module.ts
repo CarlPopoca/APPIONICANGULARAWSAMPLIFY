@@ -29,6 +29,7 @@ const routes: Routes = [
         path: 'contactsitem',
         component: ContactsItemModalPage
       }
+      
     ]
   },
   {

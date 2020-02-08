@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"appioniccontactsd2ebaefa": {
+		"appioniccontacts1077b73f": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
@@ -15,6 +15,10 @@
 	},
 	"storage": {
 		"DynamoContacts": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		},
+		"DynamoGender": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		}
@@ -34,6 +38,21 @@
 					]
 				}
 			]
+		},
+		"GenderFunction": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "DynamoGender",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"api": {
@@ -44,6 +63,20 @@
 				{
 					"category": "function",
 					"resourceName": "ContactsLambda",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		},
+		"ApiGender": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "GenderFunction",
 					"attributes": [
 						"Name",
 						"Arn"

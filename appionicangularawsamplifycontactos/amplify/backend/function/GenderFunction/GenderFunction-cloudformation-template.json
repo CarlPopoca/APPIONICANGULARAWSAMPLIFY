@@ -5,13 +5,13 @@
 		"env": {
 			"Type": "String"
 		},
-		"storageDynamoContactsName": {
+		"storageDynamoGenderName": {
 			"Type": "String",
-			"Default": "storageDynamoContactsName"
+			"Default": "storageDynamoGenderName"
 		},
-		"storageDynamoContactsArn": {
+		"storageDynamoGenderArn": {
 			"Type": "String",
-			"Default": "storageDynamoContactsArn"
+			"Default": "storageDynamoGenderArn"
 		}
 	},
 	"Conditions": {
@@ -36,12 +36,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"ContactsFunction",
+						"GenderLambda",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"ContactsFunction",
+									"GenderLambda",
 									"-",
 									{
 										"Ref": "env"
@@ -71,7 +71,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-appioniccontacts-envcontact-220459-deployment",
-					"S3Key": "amplify-builds/ContactsLambda-44744573377272305971-build.zip"
+					"S3Key": "amplify-builds/GenderFunction-734834476b495138632f-build.zip"
 				}
 			}
 		},
@@ -81,12 +81,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"appioniccontactsLambdaRole051e9710",
+						"appioniccontactsLambdaRole2e3d9e02",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"appioniccontactsLambdaRole051e9710",
+									"appioniccontactsLambdaRole2e3d9e02",
 									"-",
 									{
 										"Ref": "env"
@@ -165,14 +165,14 @@
 							],
 							"Resource": [
 								{
-									"Ref": "storageDynamoContactsArn"
+									"Ref": "storageDynamoGenderArn"
 								},
 								{
 									"Fn::Join": [
 										"/",
 										[
 											{
-												"Ref": "storageDynamoContactsArn"
+												"Ref": "storageDynamoGenderArn"
 											},
 											"index/*"
 										]

@@ -1,18 +1,18 @@
 {
     "paths": [
         {
-            "name": "/Contacts",
-            "lambdaFunction": "ContactsLambda",
+            "name": "/Gender",
+            "lambdaFunction": "GenderFunction",
             "privacy": {
                 "open": true
             }
         }
     ],
-    "resourceName": "ApiContacts",
-    "apiName": "ApiContacts",
+    "resourceName": "ApiGender",
+    "apiName": "ApiGender",
     "functionArns": [
         {
-            "lambdaFunction": "ContactsLambda"
+            "lambdaFunction": "GenderFunction"
         }
     ],
     "privacy": {
@@ -24,7 +24,7 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "ContactsLambda",
+            "resourceName": "GenderFunction",
             "attributes": [
                 "Name",
                 "Arn"

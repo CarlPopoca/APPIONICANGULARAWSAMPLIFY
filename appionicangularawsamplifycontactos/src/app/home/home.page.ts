@@ -26,8 +26,8 @@ export class HomePage implements AfterContentInit {
       this.authState.loggedIn = authState.state === 'signedIn';
       //Se notifica cuando el usuario inicia o cierra sesión
       this.events.publish('data:AuthState', this.authState)
+      console.log(this.amplifyService);
     });
-
   }
 
   ngAfterContentInit(){

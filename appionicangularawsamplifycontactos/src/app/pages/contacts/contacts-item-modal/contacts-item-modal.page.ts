@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {ContactList, ContactItem} from '../../../shared/model/contact';
+import {ContactItem} from '../../../shared/model/contactItem';
+import {Items} from '../../../shared/model/items';
+import {Gender} from '../../../shared/model/gender';
 
 @Component({
   selector: 'app-contacts-item-modal',
@@ -9,27 +11,26 @@ import {ContactList, ContactItem} from '../../../shared/model/contact';
 })
 export class ContactsItemModalPage implements OnInit {
 
-  itemList: ContactList;
-  editItem: ContactItem;
-  newItem: ContactItem;
+  itemList: ContactItem;
+  genderList: Gender[]=[];
+  editItem: Items;
+  newItem: Items;
   user: any;
-  item: ContactItem;
+  item: Items;
+
   
-
-
   constructor(private modalController: ModalController) {}
 
   ngOnInit(){
 
    //Si la variable editItem tiene valor, se seteara a la variable item para que se refleje en la vista
    // de lo contrario se setea a item con los valores inicializados de la clase ContactItem
-    this.item = this.editItem ? Object.assign({}, this.editItem) : new ContactItem({})
+    this.item = this.editItem ? Object.assign({}, this.editItem) : new Items()
+    console.log(this.genderList);
   }
 
-
   save() {
-
-    //Se 
+    
     this.modalController.dismiss({
       itemList: this.itemList,
       /* 
