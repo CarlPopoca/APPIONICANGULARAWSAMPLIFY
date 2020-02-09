@@ -3,8 +3,7 @@ import { ModalController, Events } from '@ionic/angular';
 import { AmplifyService } from 'aws-amplify-angular';
  import { ContactsItemModalPage } from '../contacts-item-modal/contacts-item-modal.page';
 import { ContactItem } from '../../../shared/model/contactItem';
-import { Observable, from} from 'rxjs';
-import {  catchError, map, mergeMap,switchMap } from 'rxjs/operators';
+import * as Messages from '../../../shared/utils/constants'
 import { AlertController } from '@ionic/angular';
 import { v4 as uuid } from 'uuid';
 import { Gender } from '../../../shared/model/gender';
@@ -59,32 +58,35 @@ export class ContactsListPage implements OnInit {
 
   }
 
-      //Porporciona los contactos
-      getItems(){
-        //Si esta variable tiene datos, es que hay un usuario 
-        if (this.user){
-          // Obtiene lso contactos ejecutando el método get pasando como parametro el id del usuario logeado,
-          // para que traiga solo la información que es suya
-          this.amplifyService.api().get('ApiContacts', `/Contacts/${this.user.id}`, {}).then((res) => {
-            //Si la promesa tiene datos se procede a setearlos a la variable itemList y que servira para 
-            //mostrarlos en la vista
-            if (res && res.length > 0){
-              this.itemList = res[0];
-            } else {
-              //Si no hay datos inicializa la variable itemList con el id sel usuario logueado
-              this.itemList = new ContactItem()
-              this.itemList.userId = this.user.id;
-              this.itemList.items = new Array<Items>();
-              
-            }
-          })
-          .catch((err) => {
-            console.log(`There was an error getting contacts: ${err}`)
-          })
+  //Porporciona los contactos
+  getItems(){
+    //Si esta variable tiene datos, es que hay un usuario 
+    if (this.user){
+      // Obtiene lso contactos ejecutando el método get pasando como parametro el id del usuario logeado,
+      // para que traiga solo la información que es suya
+      this.amplifyService.api().get('ApiContacts', `/Contacts/${this.user.id}`, {}).then((res) => {
+        //Si la promesa tiene datos se procede a setearlos a la variable itemList y que servira para 
+        //mostrarlos en la vista
+        if (res && res.length > 0){
+          this.itemList = res[0];
         } else {
-          console.log('There is no active user');
+          //Si no hay datos inicializa la variable itemList con el id sel usuario logueado
+          this.itemList = new ContactItem()
+          this.itemList.userId = this.user.id;
+          this.itemList.items = new Array<Items>();
+          
         }
-      }
+      })
+      .catch((err) => {
+        //console.log(`There was an error getting contacts: ${err}`)
+        var message:string;
+        message.concat(Messages.MESSAGE_ERROR, err);
+        this.displayErrorAlert(message);
+      })
+    } else {
+      this.displayErrorAlert(Messages.MESSAGE_NO_ACTIVE_USER);
+    }
+  }
       
   getGender()
   {
@@ -92,9 +94,11 @@ export class ContactsListPage implements OnInit {
       this.genderList= res.data;
     })
     .catch((err) => {
-      console.log(`There was an error getting gender: ${err}`)
+      var message:string;
+      message.concat(Messages.MESSAGE_ERROR, err);
     });
-  }      
+  }   
+
   async deleteConfirm(i) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
@@ -116,9 +120,24 @@ export class ContactsListPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
+  }
 
+  async displayErrorAlert(error:string)
+  {
+    const alert = await this.alertController.create({
+      header: 'error',
+      message: error,
+      cssClass: 'alert-danger',
+      buttons: [
+      {
+        text: "Ok",
+        handler: data => {
+          console.log("Ok Clicked")
+        }
+      }]
+    });
+    await alert.present();
   }
 
   async modify(item, i) {
@@ -186,7 +205,7 @@ export class ContactsListPage implements OnInit {
        this.getItems();
      })
      .catch((err) => {
-       console.log(`There was an error while saving: ${err}`)
+        this.displayErrorAlert(err);
      })
    }
   
